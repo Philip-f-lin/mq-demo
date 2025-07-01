@@ -23,5 +23,6 @@ class SpringAmqpTest {
 
         // 3. 發送消息
         rabbitTemplate.convertAndSend(queueName, message);
+
     }
 }
