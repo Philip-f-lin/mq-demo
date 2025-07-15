@@ -9,6 +9,7 @@ import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalTime;
+import java.util.Map;
 
 @Slf4j
 @Component
@@ -53,9 +54,15 @@ public class SpringRabbitListener {
             exchange = @Exchange(name = "hmall.direct", type = ExchangeTypes.DIRECT),
             key = {"red", "yellow"}
     ))
+
     @RabbitListener(queues = "direct.queue2")
     public void listenDirectQueue2(String message){
         log.info("消費者 2 監聽到 direct.queue2 的消息: {}", message);
+    }
+
+    @RabbitListener(queues = "object.queue")
+    public void listenDirectQueue(Map<String, Object> msg){
+        log.info("消費者 2 監聽到 direct.queue2 的消息: {}", msg);
     }
 
 }
